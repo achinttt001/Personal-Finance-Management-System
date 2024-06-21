@@ -1,0 +1,18 @@
+public class DashboardController {
+    @FXML
+    private PieChart expenseChart;
+
+    private TransactionManager transactionManager;
+
+    public void initialize() {
+        loadExpenseChart();
+    }
+
+    private void loadExpenseChart() {
+        Map<String, Double> categoryExpenses = transactionManager.getCategoryExpenses();
+        for (Map.Entry<String, Double> entry : categoryExpenses.entrySet()) {
+            PieChart.Data slice = new PieChart.Data(entry.getKey(), entry.getValue());
+            expenseChart.getData().add(slice);
+        }
+    }
+}
