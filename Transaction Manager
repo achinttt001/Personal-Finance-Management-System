@@ -1,0 +1,15 @@
+public class TransactionManager {
+    private DatabaseConnection dbConnection;
+    
+    public void addTransaction(Transaction transaction) {
+        String query = "INSERT INTO transactions (type, amount, category, date) VALUES (?, ?, ?, ?)";
+        // Execute the query using dbConnection
+        dbConnection.execute(query, transaction.getType(), transaction.getAmount(), transaction.getCategory(), transaction.getDate());
+    }
+
+    public List<Transaction> getTransactions(User user) {
+        String query = "SELECT * FROM transactions WHERE user_id = ?";
+        // Execute the query and return the list of transactions
+        return dbConnection.queryTransactions(query, user.getId());
+    }
+}
