@@ -1,0 +1,14 @@
+public class Login {
+    private DatabaseConnection dbConnection;
+    
+    public boolean authenticate(String username, String password) {
+        String encryptedPassword = encryptPassword(password);
+        // Query the database to check credentials
+        return dbConnection.validateUser(username, encryptedPassword);
+    }
+
+    private String encryptPassword(String password) {
+        // Implement password encryption logic
+        return ...;
+    }
+}
